@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script>
+        // Function to validate form input
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if the username and password are not empty
+            if (username == "" || password == "") {
+                alert("Both username and password are required.");
+                return false;  // Prevent form submission
+            }
+            alert("Form submitted successfully!");
+            return true;  // Allow form submission
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Login Form</h2>
+
+    <form onsubmit="return validateForm()">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
