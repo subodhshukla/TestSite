@@ -36,8 +36,8 @@ jobs:
         
 
     - name: Run TestNG Tests
-      run: gradlew test "test.java.TestPackage.TechlisticTestng" --info --stacktrace
-     # run: gradle test --tests "TestPackage.TechlisticTestng"  # Modify to your test class path
+      run: gradlew.bat test --tests "TestPackage.TechlisticTestng" --info --stacktrace
+       #run: gradlew.bat test --tests "TestPackage.TechlisticTestng"  # Modify to your test class path
       # or use specific test command if needed (e.g., gradle test)
 
     - name: Upload test results
