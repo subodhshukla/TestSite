@@ -22,7 +22,7 @@ jobs:
     - name: Set up JDK 21
       uses: actions/setup-java@v3
       with:
-        distribution: 'adoptopenjdk'
+        distribution: 'temurin'
         java-version: '21'
 
     - name: Install Gradle
@@ -34,7 +34,8 @@ jobs:
       run: gradle clean build
 
     - name: Run TestNG Tests
-      run: gradle test --tests "TestPackage.TechlisticTestng.java"  # Modify to your test class path
+      run: ./gradlew test --tests "*"
+    #  run: gradle test --tests "TestPackage.TechlisticTestng" --info --stacktrace  # Modify to your test class path
       # or use specific test command if needed (e.g., gradle test)
 
     - name: Upload test results
