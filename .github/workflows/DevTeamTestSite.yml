@@ -44,4 +44,4 @@ jobs:
       with:
         name: test-results
         path: build/test-results/test  # Path to your test results directory (Gradle default path)
-        path: build/test-results/test  # Path to your test results directory (Gradle default path)
+
