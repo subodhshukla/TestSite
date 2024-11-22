@@ -34,7 +34,7 @@ jobs:
       run: gradle clean build
 
     - name: Run TestNG Tests
-      run: gradle test --info
+      run: gradle test --tests "TestPackage.TechlisticTestng" --info
     #  run: gradle test --tests "TestPackage.TechlisticTestng" --info --stacktrace  # Modify to your test class path
       # or use specific test command if needed (e.g., gradle test)
 
