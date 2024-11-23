@@ -30,16 +30,24 @@ jobs:
       with:
         gradle-version: '8.3'  # You can modify this to the required Gradle version
 
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+      
+    - name: List files in the project directory
+      run: |
+        echo "Listing files in the repository:"
+        ls -R ./src/test/java # List all files in the repository to help debug
+
+
     - name: Install dependencies using Gradle
-      run: gradle clean build
+      run: ./gradlew clean build
 
     - name: Run TestNG Tests
-      run: ./gradlew test --tests "*"
-    #  run: gradle test --tests "TestPackage.TechlisticTestng" --info --stacktrace  # Modify to your test class path
-      # or use specific test command if needed (e.g., gradle test)
+      run: ./gradlew test --tests "TestPackage.TechlisticTestng" --info --stacktrace
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
       with:
         name: test-results
         path: build/test-results/test  # Path to your test results directory (Gradle default path)
+
