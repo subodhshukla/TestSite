@@ -41,7 +41,10 @@ jobs:
 
     - name: Install dependencies using Gradle
       run: ./gradlew clean build
-
+      
+  #  - name: Run TestNG Tests
+   #   run: ./gradlew test --tests "TestPackage.TechlisticTestng" --info --stacktrace
+      
     - name: Run TestNG Tests
       run: ./gradlew clean test --no-build-cache --info --stacktrace
       
