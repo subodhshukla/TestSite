@@ -36,7 +36,7 @@ jobs:
     - name: List files in the project directory
       run: |
         echo "Listing files in the repository:"
-        ls -R ./src/test/java # List all files in the repository to help debug
+        ls -R ./src/test/java  # List all files in the repository to help debug
 
 
     - name: Install dependencies using Gradle
