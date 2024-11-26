@@ -51,14 +51,14 @@ jobs:
         cd automation  # Change to the correct directory
         ./gradlew clean build  # Run Gradle build
       
-   # - name: Run TestNG Tests
-    #  run: |
-     #   cd automation  # Change to the correct directory
-      #  .\gradlew test --tests "src.test.java.TestPackage.TechlisticTestng" --info --stacktrace  # Run tests
+    - name: Run TestNG Tests
+      run: |
+        cd automation  # Change to the correct directory
+        .\gradlew test --tests "src.test.java.TestPackage.TechlisticTestng" --info --stacktrace  # Run tests
 
       
-    - name: Run TestNG Tests
-      run: .\gradlew test --tests "src.test.java.TestPackage.TechlisticTestng" --info --stacktrace
+    #- name: Run TestNG Tests
+     # run: .\gradlew test --tests "src.test.java.TestPackage.TechlisticTestng" --info --stacktrace
       
     - name: Upload test results
       uses: actions/upload-artifact@v3
