@@ -18,6 +18,11 @@ jobs:
       with:
         repository: subodhshukla/DemoSiteTechlistic  # Replace with your automation script repo
         token: ${{ secrets.GITHUB_TOKEN }}   # GitHub token to access other repo
+        path: automation  # Checkout the test scripts in 'automation' folder
+
+    - name: Set GitHub Action property
+      run: echo "githubAction=true" >> $GITHUB_ENV  # Set property to trigger the correct test directory in Gradle
+
 
     - name: Set up JDK 21
       uses: actions/setup-java@v3
