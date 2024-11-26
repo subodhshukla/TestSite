@@ -16,7 +16,7 @@ jobs:
     - name: Checkout automation repository
       uses: actions/checkout@v3
       with:
-        repository: subodhshukla/DemoSiteTechlistic  # Replace with your automation script repo
+        repository: subodhshukla/DemoSiteTechlistic.git  # Replace with your automation script repo
         token: ${{ secrets.GITHUB_TOKEN }}   # GitHub token to access other repo
         path: automation  # Checkout the test scripts in 'automation' folder
 
