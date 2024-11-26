@@ -36,7 +36,9 @@ jobs:
         gradle-version: '8.3'  # You can modify this to the required Gradle version
 
     - name: Make gradlew executable
-      run: chmod +x gradlew
+      run: |
+        cd automation  # Change directory to where gradlew is
+        chmod +x gradlew  # Make gradlew executable
       
     - name: List files in the project directory
       run: |
