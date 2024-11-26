@@ -58,7 +58,7 @@ jobs:
 
       
     - name: Run TestNG Tests
-      run: .\gradlew clean test  --info --stacktrace
+      run: .\gradlew test  --info --stacktrace  # Run tests
       
     - name: Upload test results
       uses: actions/upload-artifact@v3
