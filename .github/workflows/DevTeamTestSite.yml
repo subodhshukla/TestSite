@@ -16,7 +16,7 @@ jobs:
     - name: Checkout automation repository
       uses: actions/checkout@v3
       with:
-        repository: subodhshukla/DemoSiteTechlistic.git  # Replace with your automation script repo
+        repository: subodhshukla/DemoSiteTechlistic # Replace with your automation script repo
         token: ${{ secrets.GITHUB_TOKEN }}   # GitHub token to access other repo
         path: automation  # Checkout the test scripts in 'automation' folder
 
@@ -54,7 +54,7 @@ jobs:
     - name: Run TestNG Tests
       run: |
         cd automation  # Change to the correct directory
-        ./gradlew clean test --tests "TestPackage.TechlisticTestng" --info --stacktrace  # Run tests
+        ./gradlew clean test --tests "src.test.java.TestPackage.TechlisticTestng" --info --stacktrace  # Run tests
 
       
     # - name: Run TestNG Tests
