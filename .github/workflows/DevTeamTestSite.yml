@@ -47,10 +47,15 @@ jobs:
 
 
     - name: Install dependencies using Gradle
-      run: ./gradlew clean build
+      run: |
+        cd automation  # Change to the correct directory
+        ./gradlew clean build  # Run Gradle build
       
     - name: Run TestNG Tests
-      run: ./gradlew clean test --tests "TestPackage.TechlisticTestng" --info --stacktrace
+      run: |
+        cd automation  # Change to the correct directory
+        ./gradlew clean test --tests "TestPackage.TechlisticTestng" --info --stacktrace  # Run tests
+
       
    # - name: Run TestNG Tests
     #  run: ./gradlew clean test --no-build-cache --info --stacktrace
@@ -59,5 +64,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: build/test-results/test   # Path to your test results directory (Gradle default path)
+        path: automation/build/test-results/test    # Path to your test results directory (Gradle default path)
 
