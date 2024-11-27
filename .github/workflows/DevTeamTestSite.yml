@@ -6,7 +6,7 @@ on:
       - DevTeamTestSite  # Trigger the workflow on push to the 'main' branch (can be modified based on your repo)
   pull_request:
     branches:
-      - DevTeamTestSite  # Trigger on pull request to the 'main' branch
+      - DevTeamTestSite  # Trigger on pull request to the 'main' branch 
 
 jobs:
   build:
