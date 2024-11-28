@@ -56,10 +56,6 @@ jobs:
          cd automation
          ./gradlew printSourceDirs
          
-    - name: Run TestNG Tests
-      run: |
-        cd automation  # Change to the correct directory
-         .\gradlew test "TechlisticTestng"
       
   #  - name: Run TestNG Tests
    #   run: |
@@ -67,8 +63,8 @@ jobs:
      #    .\gradlew clean test --tests "TechlisticTestng" --info --stacktrace  # Run tests
        
       
-    #- name: Run TestNG Tests
-     # run: .\gradlew clean test --tests "src.test.java.TechlisticTestng" --info --stacktrace
+    - name: Run TestNG Tests
+      run: .\gradlew clean test --tests "src.test.java.TechlisticTestng" --info --stacktrace
       
     - name: Upload test results
       uses: actions/upload-artifact@v3
