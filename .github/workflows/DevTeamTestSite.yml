@@ -46,7 +46,6 @@ jobs:
         cd automation  # Change to the correct directory
         ls -R ./src/test/java  # List all files in the repository to help debug
 
-
     - name: Install dependencies using Gradle
       run: |
         cd automation  # Change to the correct directory
@@ -56,11 +55,16 @@ jobs:
       run: |
          cd automation
          ./gradlew printSourceDirs
-      
+         
     - name: Run TestNG Tests
       run: |
         cd automation  # Change to the correct directory
-         .\gradlew clean test --tests "TechlisticTestng" --info --stacktrace  # Run tests
+         .\gradlew test
+      
+  #  - name: Run TestNG Tests
+   #   run: |
+    #    cd automation  # Change to the correct directory
+     #    .\gradlew clean test --tests "TechlisticTestng" --info --stacktrace  # Run tests
        
       
     #- name: Run TestNG Tests
