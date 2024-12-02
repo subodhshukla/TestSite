@@ -60,11 +60,11 @@ jobs:
     - name: Run TestNG Tests
       run: |
         cd automation  # Change to the correct directory
-         .\gradlew clean test --tests "TechlisticTestng" --info --debug --stacktrace  # Run tests
+         .\gradlew clean build test --tests "TechlisticTestng" --info --debug --stacktrace  # Run tests
        
       
   #  - name: Run TestNG Tests
-  #    run: .\gradlew clean test --tests "src.test.java.TechlisticTestng" --info --stacktrace
+  #    run: .\gradlew clean test --tests "TechlisticTestng" --info --stacktrace
       
     - name: Upload test results
       uses: actions/upload-artifact@v3
