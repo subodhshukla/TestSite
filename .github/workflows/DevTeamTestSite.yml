@@ -50,7 +50,7 @@ jobs:
     - name: Install dependencies using Gradle
       run: |
         cd automation  # Change to the correct directory
-        ./gradlew clean build  # Run Gradle build
+        ./gradlew build  # Run Gradle build
 
     - name: Print Source Dirs
       run: |
