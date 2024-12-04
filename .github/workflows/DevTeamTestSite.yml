@@ -61,8 +61,8 @@ jobs:
     - name: Run TestNG Tests
       run: |
         cd automation  # Change to the correct directory
-         .\gradlew test --tests "TechlisticTestng" --info --stacktrace  # Run tests
-       
+        # .\gradlew test --tests "TechlisticTestng" --info --stacktrace  # Run tests
+        .\gradlew clean test
       
    # - name: Run TestNG Tests
    #   run: .\gradlew clean test --info --stacktrace
