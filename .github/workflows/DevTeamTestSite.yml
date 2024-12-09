@@ -67,8 +67,13 @@ jobs:
           ref: DevTeamTestSite
       - name: Remove workflow files
         run: >
-          rm -rf .github/workflows/*  # Remove .yml workflow file from the
-          repository to avoid pushing it
+          rm -rf .github/workflows/*  # Remove .yml workflow file from the repository to avoid pushing it
+
+      - name: Wait before Git Merge
+        run: |
+         echo "Waiting for 20 seconds before merging..."
+         sleep 20  # Allow 20 seconds before merging to avoid file conflicts
+
       - name: Commit and push changes to master
         run: >
          git config --global user.name "GitHub Actions"
