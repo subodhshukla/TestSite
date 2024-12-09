@@ -65,6 +65,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: DevTeamTestSite
+      - name: Clean Gradle build directory
+        run: |
+          cd automation
+          ./gradlew clean
+          rm -rf automation/build  # Explicitly remove build directory
       - name: Remove workflow files
         run: >
           rm -rf .github/workflows/*  # Remove .yml workflow file from the repository to avoid pushing it
@@ -76,9 +81,13 @@ jobs:
 
       - name: Commit and push changes to master
         run: >
-         git config --global user.name "GitHub Actions"
-         git config --global user.email "actions@github.com"
-         git fetch origin  # Ensure the latest code from remote is fetched
-         git checkout master  # Switch to master branch
-         git merge origin/DevTeamTestSite --no-ff -m "Merged build code into master"
-         git push origin master
+          git config --global user.name 'GitHub Actions' 
+          git config --global user.email 'actions@github.com' 
+          git fetch origin  # Ensure the latest code from remote is fetched 
+          git checkout master  # Switch to master branch 
+          # Clean working directory 
+          git clean -fd  # Remove untracked files and directories 
+          # Merge DevTeamTestSite into master 
+          git merge origin/DevTeamTestSite --no-ff -m 'Merged build code into master' 
+          # Push the merged changes to master 
+          git push origin master
