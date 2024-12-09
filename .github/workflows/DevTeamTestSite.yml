@@ -57,6 +57,10 @@ jobs:
         with:
           name: test-results
           path: automation/build/test-results/test
+     # Merging script started
+      - name: Wait for 10 seconds to avoid file conflicts
+        run: |
+         sleep 10
       - name: Checkout devteamtestsite branch
         uses: actions/checkout@v2
         with:
