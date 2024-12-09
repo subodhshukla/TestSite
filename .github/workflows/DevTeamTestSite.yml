@@ -1,98 +1,95 @@
 name: Run Selenium Tests on Push to Dev Team Repo
-
-on:
+'on':
   push:
     branches:
-      - DevTeamTestSite  # Trigger the workflow on push to the 'main' branch (can be modified based on your repo)
+      - DevTeamTestSite
   pull_request:
     branches:
-      - DevTeamTestSite  # Trigger on pull request to the 'main' branch
-
+      - DevTeamTestSite
 jobs:
   build:
-    runs-on: windows-latest  # Use Windows as the OS for the GitHub runner
-
+    runs-on: windows-latest
     steps:
-    - name: Checkout automation repository
-      uses: actions/checkout@v3
-      with:
-        ref: master
-        repository: subodhshukla/DemoSiteTechlistic # Replace with your automation script repo
-        token: ${{ secrets.GITHUB_TOKEN }}   # GitHub token to access other repo
-        path: automation  # Checkout the test scripts in 'automation' folder
+      - name: Checkout automation repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          repository: subodhshukla/DemoSiteTechlistic
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          path: automation
+      - name: Set GitHub Action property
+        run: echo "githubAction=true" >> $GITHUB_ENV
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '8.3'
+      - name: Make gradlew executable
+        run: |
+          cd automation  # Change directory to where gradlew is
+          chmod +x gradlew  # Make gradlew executable
+      - name: List files in the project directory
+        run: >
+          echo "Listing files in the repository:"
 
-    - name: Set GitHub Action property
-      run: echo "githubAction=true" >> $GITHUB_ENV  # Set property to trigger the correct test directory in Gradle
+          cd automation  # Change to the correct directory
 
-
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-
-    - name: Install Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        gradle-version: '8.3'  # You can modify this to the required Gradle version
-
-    - name: Make gradlew executable
-      run: |
-        cd automation  # Change directory to where gradlew is
-        chmod +x gradlew  # Make gradlew executable
-      
-    - name: List files in the project directory
-      run: |
-        echo "Listing files in the repository:"
-        cd automation  # Change to the correct directory
-        ls -R ./src/test/java  # List all files in the repository to help debug
-
-    - name: Install dependencies using Gradle
-      run: |
-        cd automation  # Change to the correct directory
-        ./gradlew build  # Run Gradle build
-
-    - name: Print Source Dirs
-      run: |
-         cd automation
-         ./gradlew printSourceDirs
-         
-      
-    - name: Run TestNG Tests
-      run: |
-        cd automation  # Change to the correct directory
-        # .\gradlew test --tests "TechlisticTestng" --info --stacktrace  # Run tests
-        .\gradlew clean test
-      
-   # - name: Run TestNG Tests
-   #   run: .\gradlew clean test --info --stacktrace
-      
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: automation/build/test-results/test    # Path to your test results directory (Gradle default path)
-
-# merging code on master
-
-    
-
-    - name: Checkout devteamtestsite branch
-      uses: actions/checkout@v2
-      with:
-       ref: DevTeamTestSite
-        
-    - name: Remove workflow files
-      run: |
-          rm -rf .github/workflows/*  # Remove .yml workflow file
-
-    - name: Commit and push changes to master
-      run: |
+          ls -R ./src/test/java  # List all files in the repository to help
+          debug
+      - name: Install dependencies using Gradle
+        run: |
+          cd automation  # Change to the correct directory
+          ./gradlew build  # Run Gradle build
+      - name: Print Source Dirs
+        run: |
+          cd automation
+          ./gradlew printSourceDirs
+      - name: Run TestNG Tests
+        run: |
+          cd automation  # Change to the correct directory
+          .\gradlew clean test  # Run the tests
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: automation/build/test-results/test
+      - name: Checkout devteamtestsite branch
+        uses: actions/checkout@v2
+        with:
+          ref: DevTeamTestSite
+      - name: Remove workflow files
+        run: >
+          rm -rf .github/workflows/*  # Remove .yml workflow file from the
+          repository to avoid pushing it
+      - name: Commit and push changes to master
+        run: >
           git config --global user.name "GitHub Actions"
+
           git config --global user.email "actions@github.com"
+
+
+          # Ensure you are on the devteamtestsite branch before switching to
+          master
+
+          git checkout DevTeamTestSite
+
+
+          # Merge changes from DevTeamTestSite to master (without .yml files)
+
           git checkout master
+
+          git merge DevTeamTestSite --no-ff -m "Merge application build code
+          into master"
+
+
+          # Add and commit changes
+
           git add .
-          git commit -m "Merge application build code into master"
+
+          git commit -m "Merged build code to master"
+
           git push origin master
-
-
