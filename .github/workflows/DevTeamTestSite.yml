@@ -1,0 +1,60 @@
+name: Run Selenium Tests on Push to Dev Team Repo
+'on':
+  push:
+    branches:
+      - DevTeamTestSite
+  pull_request:
+    branches:
+      - DevTeamTestSite
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout automation repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          repository: subodhshukla/DemoSiteTechlistic
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          path: automation
+      - name: Set GitHub Action property
+        run: echo "githubAction=true" >> $GITHUB_ENV
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '8.3'
+      - name: Make gradlew executable
+        run: |
+          cd automation  # Change directory to where gradlew is
+          chmod +x gradlew  # Make gradlew executable
+      - name: List files in the project directory
+        run: >
+          echo "Listing files in the repository:"
+
+          cd automation  # Change to the correct directory
+
+          ls -R ./src/test/java  # List all files in the repository to help
+          debug
+      - name: Install dependencies using Gradle
+        run: |
+          cd automation  # Change to the correct directory
+          ./gradlew build  # Run Gradle build
+      - name: Print Source Dirs
+        run: |
+          cd automation
+          ./gradlew printSourceDirs
+      - name: Run TestNG Tests
+        run: |
+          cd automation  # Change to the correct directory
+          .\gradlew clean test  # Run the tests
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: automation/build/test-results/test
+     
