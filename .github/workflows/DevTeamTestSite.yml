@@ -17,6 +17,7 @@ jobs:
           repository: subodhshukla/DemoSiteTechlistic
           token: '${{ secrets.GITHUB_TOKEN }}'
           path: automation
+          submodules: false  # Add this line to disable submodule fetching
       - name: Set GitHub Action property
         run: echo "githubAction=true" >> $GITHUB_ENV
       - name: Set up JDK 21
