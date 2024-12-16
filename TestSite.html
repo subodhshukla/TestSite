@@ -3,56 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <script>
-        // Function to validate form input **
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            // Check if the username and password are not empty
-            if (username == "" || password == "") {
-                alert("Both username and password are required.");
-                return false;  // Prevent form submission
-            }
-            alert("Form submitted successfully!");
-            return true;  // Allow form submission
+    <title>Chemical Laboratory Website</title>
+    <style>
+        /* Default darker background color */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('ChemscopeBG.jpg'); /* Full local path of image */
+            background-size: cover; /* Make the image cover the full background */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent image repetition */
+            background-color: #ADD8E8; /* Light Blue (light enough to contrast but not too bright) */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+            height: 100vh; /* Ensure the background covers the entire screen */
         }
-    </script>
+
+        /* Navbar styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white; /* White background for the navbar */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for a tab-like effect */
+            z-index: 100; /* Make sure it stays on top of other content */
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Align items on the left and right */
+        }
+
+        /* Logo styles */
+        .navbar-logo {
+            margin-left: 20px; /* Space from the left edge */
+			width: 150px; /* Increase the width for a bigger logo */
+			height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Navbar list styles */
+        .navbar {
+            list-style: none;
+            display: flex; /* Make the list horizontal */
+            justify-content: flex-end; /* Align items to the right */
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 30px; /* Space between the tabs */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333; /* Dark text color for the links */
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 5px; /* Rounded corners for the tabs */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Active tab styles (for when it's selected) */
+        .navbar a:active,
+        .navbar a:hover {
+            background-color: #f1f1f1; /* Light grey background on hover */
+            color: #007BFF; /* Change text color on hover */
+        }
+
+        /* Content styling for top center */
+        .content {
+            position: absolute;
+            top: 120px; /* Adjust this to position the text lower or higher */
+            left: 50%; /* Horizontally center the content */
+            transform: translateX(-50%); /* Adjust for exact centering */
+            text-align: center;
+            color: #ffffff; /* White text color */
+            font-family: Arial, sans-serif;
+            font-size: 2em; /* Adjust font size */
+            z-index: 10; /* Ensure the content is in front of the background */
+        }
+
+        /* Optional: Add some spacing between navbar and the content below */
+        body {
+            margin-top: 80px; /* Space for the navbar */
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar (Horizontal Navigation Bar) -->
+    <nav>
+        <!-- Logo on the left side of the navbar -->
+        <img src="logo.png" alt="Chemscope Logo" class="navbar-logo">
 
-    <h2>Login Form</h2>
+        <!-- Navigation Links -->
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <form onsubmit="return validateForm()">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="Submit">
-	<!-- Checkbox Button -->
-	<input type="checkbox" id="remember" name="remember">
-        <label for="remember">Remember Me</label><br><br>
+    <!-- Content Section -->
+    <div class="content">
+        <h1>Chemscope Labsolutions India LLP</h1>
+        <p>Discover your extensive chemical solutions with us!</p>
+    </div>
 
+    &lt;!&ndash; Sections for each navigation link &ndash;&gt;
+   <!-- <section id="home">
+        <h2>Welcome to the Home Section</h2>
+        <p>Content for the home section...</p>
+    </section>
 
-	<!-- Radio Button -->
-        <label for="userType">User Type:</label><br>
-        <input type="radio" id="admin" name="userType" value="admin">
-        <label for="admin">Admin</label><br>
-        <input type="radio" id="regular" name="userType" value="regular">
-        <label for="regular">Regular User</label><br><br>
-	
-	<label for="dropdown">Choose an option:</label>
-	<select id="dropdown" name="options">
- 		 <option value="option1">Option 1</option>
-  		<option value="option2">Option 2</option>
-  		<option value="option3">Option 3</option>
-  		<option value="option4">Option 4</option>
-		<option value="option5">Option 5</option>
-	</select>
-    </form>
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Information about your company...</p>
+    </section>
 
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Details about the services you provide...</p>
+    </section>
+
+    <section id="location">
+        <h2>Our Location</h2>
+        <p>Details about your location...</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>How to get in touch with us...</p>
+    </section>-->
+
+    <script>
+        // JavaScript to dynamically add chemical instrument images with shadow effect
+        function setChemicalBackground() {
+            // List of chemical instrument images (replace these with your own image paths)
+            let chemicalImages = [
+                'D:/subodh/subodh_Spar/PersonalFile/Chemscope/ChemscopeBG.jpg', // Example: Beaker
+            ];
+
+            // Create a container for background images
+            let backgroundContainer = document.createElement('div');
+            backgroundContainer.style.position = 'absolute';
+            backgroundContainer.style.top = 0;
+            backgroundContainer.style.left = 0;
+            backgroundContainer.style.width = '100%';
+            backgroundContainer.style.height = '100%';
+            backgroundContainer.style.zIndex = '-1'; // Keep the background images behind the content
+
+            // Loop through each chemical instrument image
+            chemicalImages.forEach(function (image) {
+                let img = document.createElement('img');
+                img.src = image; // Path to your images
+                img.style.position = 'absolute';
+                img.style.width = '150px'; // Set a size for the image
+                img.style.opacity = '0.3'; // Low opacity for a shadow effect
+                img.style.left = Math.random() * 50 + '%'; // Random horizontal position
+                img.style.top = Math.random() * 50 + '%'; // Random vertical position
+                img.style.transform = 'rotate(' + Math.random() * 360 + 'deg)'; // Random rotation
+                img.style.filter = 'blur(2px)'; // Optional: blur for softer shadow effect
+                img.style.boxShadow = '5px 5px 20px rgba(0, 0, 0, 0.5)'; // Stronger shadow effect
+                backgroundContainer.appendChild(img);
+            });
+
+            // Append the background container to the body
+            document.body.appendChild(backgroundContainer);
+        }
+
+        // Call the function to set the shadow background images
+        setChemicalBackground();
+    </script>
 </body>
 </html>
