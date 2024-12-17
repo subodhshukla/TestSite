@@ -93,6 +93,30 @@
         html {
             scroll-behavior: smooth;
         }
+		
+		/* Content styling */
+        #content {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            z-index: 10;
+            width: 80%;
+        }
+
+        #content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -103,8 +127,8 @@
 
         <!-- Navigation Links -->
         <ul class="navbar">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li> <a href="#" onclick="loadContent('Home.html')">Home</a></li>
+            <li> <a href="#" onclick="loadContent('About.html')">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#location">Location</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -112,7 +136,7 @@
     </nav>
 
     <!-- Content Section -->
-    <div class="content">
+    <div id="content">
         <h1>Chemscope Labsolutions India LLP</h1>
         <p>Discover your extensive chemical solutions with us!</p>
     </div>
@@ -181,6 +205,27 @@
 
         // Call the function to set the shadow background images
         setChemicalBackground();
+    </script>
+	<script>
+function loadContent(page) {
+    // Fetch content from the specified file
+    fetch(page)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Wrap the loaded content in a container to preserve styling
+            const wrappedContent = `<div class="dynamic-content">${data}</div>`;
+            document.getElementById('content').innerHTML = wrappedContent;
+        })
+        .catch(error => {
+            document.getElementById('content').innerHTML = '<p>Error loading content. Please try again later.</p>';
+            console.error('Error loading content:', error)
+			});
+}
     </script>
 </body>
 </html>
