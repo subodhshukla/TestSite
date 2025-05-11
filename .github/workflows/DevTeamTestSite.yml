@@ -32,23 +32,23 @@ jobs:
       - name: Make gradlew executable
         run: |
           cd automation  # Change directory to where gradlew is
-          chmod +x gradlew  # Make gradlew executable
+         # chmod +x gradlew  # Make gradlew executable
       - name: List files in the project directory
         run: >
           echo "Listing files in the repository:"
 
           cd automation  # Change to the correct directory
 
-          ls -R ./src/test/java  # List all files in the repository to help
+          dir -R ./src/test/java  # List all files in the repository to help
           debug
       - name: Install dependencies using Gradle
         run: |
           cd automation  # Change to the correct directory
-          ./gradlew build  # Run Gradle build
+          .\gradlew build  # Run Gradle build
       - name: Print Source Dirs
         run: |
           cd automation
-          ./gradlew printSourceDirs
+          .\gradlew printSourceDirs
       - name: Run TestNG Tests
         run: |
           cd automation  # Change to the correct directory
