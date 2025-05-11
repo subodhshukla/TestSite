@@ -1,5 +1,5 @@
 name: Run Selenium Tests on Push to Dev Team Repo
-'on':
+on:
   push:
     branches:
       - DevTeamTestSite
