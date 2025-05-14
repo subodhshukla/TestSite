@@ -54,7 +54,7 @@ jobs:
           cd automation  # Change to the correct directory
           .\gradlew clean test  # Run the tests
       - name: Upload test results
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v3
         with:
           name: test-results
           path: automation/build/test-results/test
