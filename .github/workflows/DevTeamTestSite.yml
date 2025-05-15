@@ -18,6 +18,9 @@ jobs:
           token: '${{ secrets.GITHUB_TOKEN }}'
           path: automation
           submodules: false  # Add this line to disable submodule fetching
+      - name: Remove existing action cache (optional)
+        run: Remove-Item -Recurse -Force "$env:USERPROFILE\.actions"
+        shell: pwsh
       - name: Set GitHub Action property
         run: echo "githubAction=true" >> $GITHUB_ENV
       - name: Set up JDK 21
