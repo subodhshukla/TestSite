@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout automation repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: master
           repository: subodhshukla/DemoSiteTechlistic
@@ -55,7 +55,7 @@ jobs:
           cd automation  # Change to the correct directory
           .\gradlew clean test  # Run the tests
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: automation/build/test-results/test
