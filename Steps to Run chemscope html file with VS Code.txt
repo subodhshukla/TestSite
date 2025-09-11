@@ -1,0 +1,28 @@
+Steps to Run Live Server in VS Code
+===================================
+
+Install Live Server Extension
+
+	>Open VS Code.
+
+	>Go to the Extensions Marketplace (left sidebar → square icon or press Ctrl+Shift+X).
+
+	>Search for “Live Server” (by Ritwick Dey).
+
+	>Click Install.
+
+Open Your Project Folder
+
+	>In VS Code → File → Open Folder…
+
+	>Select the folder where your HTML files (e.g., index.html, contact.html, etc.) are stored.
+
+Start Live Server
+
+	>In the Explorer, right-click on your index.html → select “Open with Live Server”.
+
+	>OR click the Go Live button in the bottom-right corner of VS Code.
+
+Browser Launches
+
+	>Your default browser will open automatically at:
